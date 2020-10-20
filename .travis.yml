@@ -1,0 +1,11 @@
+language: python
+jobs:
+  include:
+  - stage: test
+    name: macOS
+    os: osx
+    osx_image: xcode10.1
+    install: true
+    script: dev/main
+    before_install: dev/before_install
+    before_script: env
