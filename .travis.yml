@@ -5,6 +5,7 @@ jobs:
     name: macOS
     os: osx
     osx_image: xcode10.1
+    jdk: oraclejdk11
     install: true
     script: dev/main
     before_install: dev/before_install
