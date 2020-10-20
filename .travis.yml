@@ -1,4 +1,4 @@
-# language: python
+language: java
 jobs:
   include:
   - stage: test
