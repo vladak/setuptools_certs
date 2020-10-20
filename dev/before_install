@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# HomeBrew update takes a long time so avoid it.
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+echo "Installing python3 via HomeBrew.."
 brew install python3
 brew upgrade python
 
