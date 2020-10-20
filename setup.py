@@ -8,10 +8,10 @@ setup(
     name='test',
     version=1.0,
     packages=[
-        'opengrok_tools',
+        'test',
     ],
     package_dir={
-        'opengrok_tools': 'src/main/python/test',
+        'test': 'src/main/python',
     },
     url='https://github.com/vladak',
     license='CDDL',
