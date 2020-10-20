@@ -5,7 +5,6 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 echo "Installing python3 via HomeBrew.."
 brew install python3
-brew upgrade python
 
 echo "Installing/upgrading pip.."
 python3 -m pip install --upgrade pip setuptools
