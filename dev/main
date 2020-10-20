@@ -1,7 +1,10 @@
 #!/bin/bash
 
-echo "Generating virtual environment"
+echo "# Generating virtual environment"
 python3 -m venv env
 
-echo "setup.py install"
+echo "# Installing/upgrading pip/setuptools etc."
+./env/bin/python -m pip install --upgrade pip setuptools certifi wheel
+
+echo "# setup.py install"
 ./env/bin/python setup.py install
