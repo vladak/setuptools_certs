@@ -1,4 +1,24 @@
 language: java
+cache:
+  directories:
+    - "$HOME/.m2"
+    - "$HOME/.sonar/cache"
+env:
+  global:
+    # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+    # via the "travis encrypt" command using the project repo's public key.
+    - secure: O_cda5pWDBAP-O3_0nG5RQ
+addons:
+  coverity_scan:
+    project:
+      name: OpenGrok/OpenGrok
+      description: Build submitted via Travis CI
+      branch_pattern: coverity_scan
+      build_command: ./mvnw -DskipTests=true -Dmaven.javadoc.skip=false -B -V compile
+  sonarcloud:
+    organization: opengrok
+    token:
+      secure: ayjmifQPQgKt/ICGfKtLpa8LwBAXZlxKwaPyjvXDRHyf3lbXGKkOCspH/wSoersoV4ZLt5UfSGKeFh1MS0IXAwUOcPTcV3/DUmycJjxZ5z9KjgGKsu0Spo1xZWioS+p1bzN6cJcNlwihE97idLhVSvDProf6L+pn0dqw8Lfz2k0=
 jobs:
   include:
     - stage: test
