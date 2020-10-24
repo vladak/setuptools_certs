@@ -1,12 +1,22 @@
 language: java
 jobs:
   include:
-  - stage: test
-    name: macOS
-    os: osx
-    osx_image: xcode10.1
-    jdk: oraclejdk11
-    install: true
-    script: dev/main
-    before_install: dev/before_install
-    before_script: env
+    - stage: test
+      name: Linux + Oracle JDK 11
+      os: linux
+      dist: xenial
+      sudo: required
+      jdk: openjdk11
+      install: true
+      script: dev/main
+      before_install: dev/before_install
+      before_script: env
+    - stage: test
+      name: MacOSX + Oracle JDK 11
+      os: osx
+      osx_image: xcode10.1
+      jdk: oraclejdk11
+      install: true
+      script: dev/main
+      before_install: dev/before_install
+      before_script: env
