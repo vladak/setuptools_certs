@@ -1,11 +1,4 @@
 language: java
-addons:
-  coverity_scan:
-    project:
-      name: OpenGrok/OpenGrok
-      description: Build submitted via Travis CI
-      branch_pattern: coverity_scan
-      build_command: ./mvnw -DskipTests=true -Dmaven.javadoc.skip=false -B -V compile
 jobs:
   include:
     - stage: test
