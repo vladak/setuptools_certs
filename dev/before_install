@@ -3,6 +3,13 @@
 # HomeBrew update takes a long time so avoid it.
 export HOMEBREW_NO_AUTO_UPDATE=1
 
+
+brew install cvs libgit2 jq
+if [[ $? != 0 ]]; then
+  echo "cannot install extra packages"
+  exit 1
+fi
+
 echo "Installing python3 via HomeBrew.."
 brew install python3
 
@@ -12,6 +19,7 @@ python3 -m pip install --upgrade pip setuptools
 echo "Installing Python packages.."
 python3 -m pip install pep8 virtualenv
 if [[ $? != 0 ]]; then
-        echo "cannot install Python packages"
-        exit 1
+	echo "cannot install Python packages"
+	exit 1
 fi
+
