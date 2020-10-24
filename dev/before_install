@@ -1,17 +1,63 @@
 #!/bin/bash
+if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+  sudo apt-get update -qq
+  if [[ $? != 0 ]]; then
+    echo "cannot update"
+    exit 1
+  fi
 
-# HomeBrew update takes a long time so avoid it.
-export HOMEBREW_NO_AUTO_UPDATE=1
+  sudo apt-get install -qq \
+    cvs \
+    git \
+    mercurial \
+    cssc \
+    bzr \
+    subversion \
+    monotone \
+    rcs \
+    rcs-blame \
+    python3 \
+    python3-venv \
+    python3-pip \
+    nodejs \
+    jq
+  if [[ $? != 0 ]]; then
+    echo "cannot install extra packages"
+    exit 1
+  fi
 
-echo "Installing python3 via HomeBrew.."
-brew install python3
+  echo "Installing/upgrading pip.."
+  python3 -m pip install --upgrade pip setuptools
 
-echo "Installing/upgrading pip.."
-python3 -m pip install --upgrade pip setuptools
+  echo "Installing Python packages.."
+  python3 -m pip install pep8 virtualenv
+  if [[ $? != 0 ]]; then
+    echo "cannot install Python packages"
+    exit 1
+  fi
 
-echo "Installing Python packages.."
-python3 -m pip install pep8 virtualenv
-if [[ $? != 0 ]]; then
-        echo "cannot install Python packages"
-        exit 1
+elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+  # HomeBrew update takes a long time so avoid it.
+  export HOMEBREW_NO_AUTO_UPDATE=1
+
+  brew install cvs libgit2 jq
+  if [[ $? != 0 ]]; then
+    echo "cannot install extra packages"
+    exit 1
+  fi
+
+  echo "Installing python3 via HomeBrew.."
+  brew install python3
+  brew upgrade python
+
+  echo "Installing/upgrading pip.."
+  python3 -m pip install --upgrade pip setuptools
+
+  echo "Installing Python packages.."
+  python3 -m pip install pep8 virtualenv
+  if [[ $? != 0 ]]; then
+    echo "cannot install Python packages"
+    exit 1
+  fi
+
 fi
