@@ -1,9 +1,11 @@
 language: java
 addons:
-  sonarcloud:
-    organization: opengrok
-    token:
-      secure: ayjmifQPQgKt/ICGfKtLpa8LwBAXZlxKwaPyjvXDRHyf3lbXGKkOCspH/wSoersoV4ZLt5UfSGKeFh1MS0IXAwUOcPTcV3/DUmycJjxZ5z9KjgGKsu0Spo1xZWioS+p1bzN6cJcNlwihE97idLhVSvDProf6L+pn0dqw8Lfz2k0=
+  coverity_scan:
+    project:
+      name: OpenGrok/OpenGrok
+      description: Build submitted via Travis CI
+      branch_pattern: coverity_scan
+      build_command: ./mvnw -DskipTests=true -Dmaven.javadoc.skip=false -B -V compile
 jobs:
   include:
     - stage: test
